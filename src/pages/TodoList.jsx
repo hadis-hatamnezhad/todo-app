@@ -44,15 +44,15 @@ function TodoList({ tasks, toggleTask, deleteTask }) {
                 <Link
                   className="edit-button"
                   to={`/todos/${task.id}/edit`}
-                  aria-label="ویرایش تودو"
+                  aria-label="ویرایش کار"
                 >
-                  ✏️
+                  ✎
                 </Link>
 
                 <button
                   className="delete-button"
                   onClick={() => deleteTask(task.id)}
-                  aria-label="حذف تودو"
+                  aria-label="حذف کار"
                 >
                   ×
                 </button>

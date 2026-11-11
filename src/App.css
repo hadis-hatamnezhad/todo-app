@@ -137,8 +137,14 @@ input {
 
 .edit-button {
   text-decoration: none;
-  font-size: 17px;
+  font-size: 23px;
+  color: #a0a5af;
   padding: 5px 8px;
+  transition: color 0.2s ease;
+}
+
+.edit-button:hover {
+  color: #174a7e;
 }
 
 .delete-button {
