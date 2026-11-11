@@ -10,6 +10,11 @@ body {
   direction: rtl;
 }
 
+button,
+input {
+  font-family: inherit;
+}
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -27,61 +32,64 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
 }
 
-.header {
+/* نوار منو */
+
+.navbar {
+  display: flex;
+  gap: 10px;
   margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.navbar a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: #9298a3;
+  font-size: 13px;
+  padding: 11px 8px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.navbar a:hover {
+  background: #f0f1f4;
+  color: #174a7e;
+}
+
+.navbar a.active {
+  background: #174a7e;
+  color: white;
+  box-shadow: 0 4px 10px rgba(23, 74, 126, 0.15);
+}
+
+/* عنوان صفحات */
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .header h1 {
   font-size: 28px;
-  color: #252a34;
-  margin-bottom: 10px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #174a7e;
+  margin-bottom: 9px;
 }
 
 .header p {
   color: #9298a3;
   font-size: 14px;
+  line-height: 1.8;
 }
 
-.todo-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.todo-form input {
-  flex: 1;
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 9px;
-  outline: none;
-  font-size: 14px;
-}
-
-.todo-form input:focus {
-  border-color: #252a34;
-}
-
-.todo-form button {
-  width: 52px;
-  min-width: 52px;
-  height: 48px;
-  border: none;
-  border-radius: 10px;
-  background: #252a34;
-  color: white;
-  font-size: 26px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.todo-form button:hover {
-  background: #414957;
-}
+/* بخش لیست کارها */
 
 .task-section h2 {
   font-size: 18px;
-  color: #252a34;
+  color: #174a7e;
   margin-bottom: 15px;
 }
 
@@ -96,6 +104,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 15px;
   border: 1px solid #edf0f2;
   border-radius: 9px;
@@ -103,13 +112,33 @@ body {
   color: #333842;
 }
 
-.task-item span {
+.task-title {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
   cursor: pointer;
+  overflow-wrap: anywhere;
 }
 
 .completed {
   text-decoration: line-through;
   color: #a0a5af;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.edit-button {
+  text-decoration: none;
+  font-size: 17px;
+  padding: 5px 8px;
 }
 
 .delete-button {
@@ -145,34 +174,98 @@ body {
 .stat-number {
   font-size: 24px;
   font-weight: bold;
-  color: #252a34;
+  color: #174a7e;
 }
 
 .stat-label {
   font-size: 13px;
   color: #9298a3;
 }
-.task-item form {
+
+/* فرم ایجاد و ویرایش کار */
+
+.page-form {
   display: flex;
-  flex: 1;
-  gap: 8px;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.task-item form input {
-  flex: 1;
-  min-width: 0;
-  padding: 9px;
+.page-form input {
+  width: 100%;
+  padding: 14px;
   border: 1px solid #e5e7eb;
-  border-radius: 7px;
+  border-radius: 9px;
   outline: none;
   font-size: 14px;
+  background: #fff;
+  transition: all 0.25s ease;
 }
 
-.task-item form button {
+.page-form input:focus {
+  border-color: #174a7e;
+  box-shadow: 0 0 0 3px rgba(23, 74, 126, 0.13);
+}
+
+/* دکمه ثبت */
+
+.page-form button {
+  width: 100%;
+  padding: 13px;
   border: none;
-  background: #252a34;
+  border-radius: 9px;
+  background: #174a7e;
   color: white;
-  padding: 8px 14px;
-  border-radius: 7px;
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.page-form button:hover {
+  background: #28669B;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(23, 74, 126, 0.16);
+
+.page-form button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+  text-decoration: none !important;
+}
+/* لینک بازگشت */
+
+ .back-link {
+  display: inline-block;
+  color: #174a7e;
+  text-decoration: none !important;
+  font-size: 13px;
+  transition: color 0.2s ease;
+  border-bottom: none;
+}
+
+.back-link:hover,
+.back-link:focus,
+.back-link:active {
+  color: #28669b;
+  text-decoration: none !important;
+  border-bottom: none;
+}
+@media (max-width: 480px) {
+  .app {
+    padding: 35px 12px;
+  }
+
+  .todo-container {
+    padding: 22px 16px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
 }
