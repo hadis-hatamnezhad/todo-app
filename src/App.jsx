@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import AppLayout from "./components/AppLayout";
 import TodoList from "./pages/TodoList";
 import TodoCreate from "./pages/TodoCreate";
 import TodoEdit from "./pages/TodoEdit";
@@ -52,38 +52,31 @@ function App() {
 
   return (
     <HashRouter>
-      <div className="min-h-screen flex justify-center items-start py-[90px] px-5 max-[480px]:py-[35px] max-[480px]:px-3">
-        <div className="w-full max-w-[500px] bg-white p-[30px] rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] max-[480px]:py-[22px] max-[480px]:px-4">
-          <Navbar />
+      <AppLayout>
+        <Routes>
+          <Route path="/" element={<Navigate to="/todos" replace />} />
 
-          <Routes>
-            <Route path="/" element={<Navigate to="/todos" replace />} />
+          <Route
+            path="/todos"
+            element={
+              <TodoList
+                tasks={tasks}
+                toggleTask={toggleTask}
+                deleteTask={deleteTask}
+              />
+            }
+          />
 
-            <Route
-              path="/todos"
-              element={
-                <TodoList
-                  tasks={tasks}
-                  toggleTask={toggleTask}
-                  deleteTask={deleteTask}
-                />
-              }
-            />
+          <Route path="/todos/new" element={<TodoCreate addTask={addTask} />} />
 
-            <Route
-              path="/todos/new"
-              element={<TodoCreate addTask={addTask} />}
-            />
+          <Route
+            path="/todos/:id/edit"
+            element={<TodoEdit tasks={tasks} editTask={editTask} />}
+          />
 
-            <Route
-              path="/todos/:id/edit"
-              element={<TodoEdit tasks={tasks} editTask={editTask} />}
-            />
-
-            <Route path="*" element={<Navigate to="/todos" replace />} />
-          </Routes>
-        </div>
-      </div>
+          <Route path="*" element={<Navigate to="/todos" replace />} />
+        </Routes>
+      </AppLayout>
     </HashRouter>
   );
 }
