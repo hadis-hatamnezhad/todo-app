@@ -2,8 +2,12 @@ import { useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 import AddEditTodo from "../components/AddEditTodo";
+import useTodoStore from "../store/todoStore";
 
-function TodoEdit({ tasks, editTask }) {
+function TodoEdit() {
+  const tasks = useTodoStore((state) => state.tasks);
+  const editTask = useTodoStore((state) => state.editTask);
+
   const { id } = useParams();
   const navigate = useNavigate();
 

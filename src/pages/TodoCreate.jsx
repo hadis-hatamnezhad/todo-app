@@ -2,8 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PageHeader from "../components/PageHeader";
 import AddEditTodo from "../components/AddEditTodo";
+import useTodoStore from "../store/todoStore";
 
-function TodoCreate({ addTask }) {
+function TodoCreate() {
+  const addTask = useTodoStore((state) => state.addTask);
+
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
 

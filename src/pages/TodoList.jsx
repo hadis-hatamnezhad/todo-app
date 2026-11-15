@@ -1,8 +1,13 @@
 import PageHeader from "../components/PageHeader";
 import TodoStats from "../components/TodoStats";
 import TaskViewer from "../components/TaskViewer";
+import useTodoStore from "../store/todoStore";
 
-function TodoList({ tasks, toggleTask, deleteTask }) {
+function TodoList() {
+  const tasks = useTodoStore((state) => state.tasks);
+  const toggleTask = useTodoStore((state) => state.toggleTask);
+  const deleteTask = useTodoStore((state) => state.deleteTask);
+
   const completedTasks = tasks.filter((task) => task.completed).length;
 
   const remainingTasks = tasks.filter((task) => !task.completed).length;
